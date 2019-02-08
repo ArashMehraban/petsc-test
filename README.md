@@ -27,23 +27,23 @@ you use DMPlexCreateFromFile(comm, filename, interpolate,dm). Please look at lin
 element. The problem is that the interpolated mesh (Q2 mesh) still has nodesets from the Q1 element. So If you want to put Dirichlet Boundary Values on all nodes of a face
 you cannot use a nodeset. look at this 2D example:
 
- o--------------o
- |		|		
- |		|
- |		|     <--- This mesh is read in for example
- |		|
- |		|
- o--------------o  
+o---------------o
+|		|		
+|		|
+|		|     <--- This mesh is read in for example
+|		|
+|		|
+o---------------o  
 
 After interpolate= PETSC_TRUE is used with DMPlexCreateFromFile(comm, filename, interpolate,dm), then you have a mesh (DMplex object) like this:
 
- o-------o------o
- |		|
- |		|
- o	 o	o     <--- This interpolated mesh
- |		|
- |      	|
- o-------o------o
+o-------o-------o
+|		|
+|		|
+o	o	o     <--- This interpolated mesh
+|		|
+|	      	|
+o-------o-------o
 
 So, your Dirichlet boundary values are going to be on nodes of the Q1 mesh above but you need it on all the dofs on Q2 mesh. 
 
